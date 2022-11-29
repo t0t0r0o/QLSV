@@ -29,7 +29,7 @@ function App() {
             path="/login"
             element={user ? <Navigate to="/qlht" /> : <Login />}
           ></Route>
-          <Route exact path="*" element={<NotFound />}></Route>
+          <Route exact path="*" element={<Login />}></Route>
           {user && (
             <>
               <Route exact path="/admin" element={<User />}></Route>

@@ -126,9 +126,17 @@ function Table(props) {
 
     const removeUser = async (id) => {
         const headers = { 'Authorization': "Bearer " + JSON.parse(localStorage.getItem('user')).access_token }
-        await axios.delete(`http://localhost:8000/api/${pageType}/` + id, { headers }).then(() => {
-            alert("Da xoa thanh cong"); getData(page, rowsPerPage, columnData, keyword);
-        }).catch((r) => { setErrorMessage(r.message); alert(errorMessage) });
+
+        await axios
+            .delete(`http://localhost:8000/api/${pageType}/` + id, { headers })
+            .then(() => {
+                alert("Da xoa thanh cong");
+                getData(page, rowsPerPage, columnData, keyword);
+            })
+            .catch((r) => {
+                setErrorMessage(r.message);
+                alert(errorMessage)
+            });
     }
     const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
         setPage(value);
@@ -224,7 +232,8 @@ function Table(props) {
                                             }
 
                                             if (column.id == "role") {
-                                                user.role = row['roles'][0].name;
+
+                                                user.role = row['roles'][0].name
                                             }
 
 

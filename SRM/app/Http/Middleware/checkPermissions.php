@@ -12,16 +12,13 @@ use Illuminate\Support\Facades\Route;
 class checkPermissions
 {
 
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
-     */
     public function handle(Request $request, Closure $next)
     {   
         $requestname = $request->route()->getName();
+
+        if($requestname == 'register') {
+            return $next($request);
+        }
 
         if ($requestname == 'login') {
             $credentials = request(['email', 'password']);
@@ -29,10 +26,9 @@ class checkPermissions
                 return response()->json(['error' => 'Unauthorized'], 401);
             }
         }
-        $user = User::where('email', $request['email'])->first();
-        if ($user && $user->active == 0) {
+        if (Auth::user() && Auth::user()->active == 0) {
             Auth::logout();
-            return response()->json(["message" => "You have been banned"], 401);
+            return response()->json(["message" => "39 You have been banned"], 403);
         } else {
 
             $roleAuthUser = User::find(Auth::id())->getRoleNames();
@@ -46,7 +42,7 @@ class checkPermissions
             if ($roleAuthUser[0] == $adminRole['name'] || in_array($requestname, $qlhtPermission)) {
                 if (Auth::user()->active == 0) {
                     Auth::logout();
-                    return response()->json(["message" => "You have been banned"], 401);
+                    return response()->json(["message" => "You have been banned 53"], 403);
                 }
                 if ($requestname == "edit user") {
                     if ($request['active'] != null) {
@@ -61,9 +57,6 @@ class checkPermissions
                 }
                 return $next($request);
             }
-
-            // dd("chay den sday");
-
 
             return response()->json(["message" => "You don't have permission "], 403);
         }

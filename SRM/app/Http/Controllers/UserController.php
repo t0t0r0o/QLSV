@@ -31,7 +31,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {   
-        $role = 'admin';
+        $role = 'user';
         if(Auth::user()->hasRole('qlht')) {
             $role = 'qlht';
         } 

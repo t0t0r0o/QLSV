@@ -65,7 +65,7 @@ console.log(error)
             </Avatar>
             <h2>Log In</h2>
             {error && error.status == 401 && <span style={{color:'red'}}>Wrong username or password</span>}
-            {error && error.status == 403 && <span style={{color:'red'}}>Account has been banned</span>}
+            {error && error.status == 403 && <span style={{color:'red'}}>Inactive account</span>}
             <p></p>
           </Grid>
           <TextField

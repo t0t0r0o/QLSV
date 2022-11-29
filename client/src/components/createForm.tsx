@@ -271,6 +271,7 @@ export default function FormDialog(props) {
                         <MenuItem value={"gender"}>Gender</MenuItem>
                         <MenuItem value={"email"}>Email</MenuItem>
                         <MenuItem value={"phoneNumber"}>Number</MenuItem>
+                        <MenuItem value={"active"}>Active</MenuItem>
                     </Select>
                 </FormControl>
                 <FormControl sx={{ m: 1 }} variant="standard">

@@ -60,9 +60,9 @@ export default function FormDialog(props) {
     let userEdit = {};
 
     if(pageType == 'students') {
-        userEdit = {username:username,firstname:firstname,lastname:lastname,email:email,number:number,gender:gender};
+        userEdit = {username:username,firstname:firstname,lastname:lastname,email:email,phoneNumber:number,gender:gender};
     } else {
-        userEdit = {username:username,firstname:firstname,lastname:lastname,email:email,number:number,gender:gender,role:role};
+        userEdit = {username:username,firstname:firstname,lastname:lastname,email:email,phoneNumber:number,gender:gender,role:role};
     }
 
 

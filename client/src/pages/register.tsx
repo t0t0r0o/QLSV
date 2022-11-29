@@ -37,19 +37,18 @@ function Register() {
 
   const newUser = {username:username,firstname:firstname,lastname:lastname,email:email,phoneNumber:number,gender:gender,password:password};
     const Register = async () => {
-        while(password != confirmPassword) {
-          alert("Mat khau nhap sai")
+        if(password != confirmPassword) {
+          alert("Mat khau nhap sai");
         }
         await axios
             .post("http://localhost:8000/api/auth/register",newUser)
-            .then(() => {alert("Dang ky thanh cong")})
-            .catch((r) => console.log(r))
+            .then(() => {alert("Dang ky thanh cong"); navigate('/login')})
+            .catch((r) => alert(r.response.data.slice(r.response.data.indexOf('["')+2,r.response.data.indexOf('"]'))))
     }
 
 
     async function handleSubmit() {
         await Register();
-        navigate('/login');
     }
 
 
